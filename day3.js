@@ -1,30 +1,30 @@
-const { parse } = require("path");
+const { parse } = require('path');
 
-const lineReader = require("readline").createInterface({
-  input: require("fs").createReadStream("input.txt"),
+const lineReader = require('readline').createInterface({
+  input: require('fs').createReadStream('input.txt'),
 });
 
 const isDigit = (symbol) => {
-  return symbol >= "0" && symbol <= "9";
+  return symbol >= '0' && symbol <= '9';
 };
 
 const fileData = [];
 const symbols = [];
 let lineNr = 0;
 
-lineReader.on("line", function (line) {
-  const lineArr = line.split("");
+lineReader.on('line', function (line) {
+  const lineArr = line.split('');
   fileData.push(lineArr);
   for (let y = 0; y < line.length; y++) {
     const character = line[y];
-    if (character === "*") {
+    if (character === '*') {
       symbols.push([lineNr, y]);
     }
   }
   lineNr++;
 });
 
-lineReader.on("close", function () {
+lineReader.on('close', function () {
   let sum = 0;
   symbols.forEach(([posX, posY]) => {
     let partNumbers = [];
@@ -42,13 +42,13 @@ lineReader.on("close", function () {
         if (!isDigit(character)) {
           continue;
         }
-        fileData[x][y] = ".";
+        fileData[x][y] = '.';
         //go left
         let pos = y - 1;
         let digits = [character];
         while (pos >= 0 && isDigit(fileData[x][pos])) {
           digits.push(fileData[x][pos]);
-          fileData[x][pos] = ".";
+          fileData[x][pos] = '.';
           pos--;
         }
         digits.reverse();
@@ -57,10 +57,10 @@ lineReader.on("close", function () {
         pos = y + 1;
         while (pos < fileData[x].length && isDigit(fileData[x][pos])) {
           digits.push(fileData[x][pos]);
-          fileData[x][pos] = ".";
+          fileData[x][pos] = '.';
           pos++;
         }
-        const number = parseInt(digits.join(""));
+        const number = parseInt(digits.join(''));
         partNumbers.push(number);
       }
     }

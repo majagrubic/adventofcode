@@ -8,7 +8,7 @@
     "format": "prettier --write ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Maja Grubic",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
