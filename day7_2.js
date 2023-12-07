@@ -63,51 +63,51 @@ lineReader.on('close', function () {
     switch (jCount) {
       case 5:
       case 4:
-        strength.set(card, {card, rank: 7});
+        strength.set(card, { card, rank: 7 });
         break;
       case 3:
         if (countMap.size === 2) {
           // J J J 2 -> five of a kind
-          strength.set(card, {card, rank: 7});
+          strength.set(card, { card, rank: 7 });
         } else {
           // J J J 1 1 -> four of a kind
-          strength.set(card, {card, rank: 6});
+          strength.set(card, { card, rank: 6 });
         }
         break;
       case 2:
         if (countMap.size === 2) {
           // J J 3 -> turn into five of a kind
-          strength.set(card, {card, rank: 7});
+          strength.set(card, { card, rank: 7 });
         } else if (countMap.size === 3) {
           // J J 2  -> turn one into four of a kind
-          strength.set(card, {card, rank: 6});
+          strength.set(card, { card, rank: 6 });
         } else {
           // J J 1 1 1 -> three of a kind
-          strength.set(card, {card, rank: 4});
+          strength.set(card, { card, rank: 4 });
         }
         break;
       case 1:
         switch (countMap.size) {
           case 2:
             // J 4
-            strength.set(card, {card, rank: 7});
+            strength.set(card, { card, rank: 7 });
             break;
           case 3:
             if (mapValues.includes(2)) {
               // 2 2 J => full house
-              strength.set(card, {card, rank: 5});
+              strength.set(card, { card, rank: 5 });
             } else {
               // 1 3 J => four of a kind
-              strength.set(card, {card, rank: 6});
+              strength.set(card, { card, rank: 6 });
             }
             break;
           case 4:
             // 2 1 1 J -> three of a kind
-            strength.set(card, {card, rank: 4});
+            strength.set(card, { card, rank: 4 });
             break;
           case 5:
             // one pair
-            strength.set(card, {card, rank: 2});
+            strength.set(card, { card, rank: 2 });
         }
     }
   });
