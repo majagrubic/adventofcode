@@ -62,58 +62,52 @@ lineReader.on('close', function () {
     const jCount = countMap.get('J');
     switch (jCount) {
       case 5:
-        // five of a kind
-        strength.set(card, { card, rank: 7 });
-        break;
       case 4:
-        // 1 J J J => can turn into five of a kind
-        strength.set(card, { card, rank: 7 });
+        strength.set(card, {card, rank: 7});
         break;
       case 3:
         if (countMap.size === 2) {
-          // J J J 2
-          // can turn into five of a kind
-          strength.set(card, { card, rank: 7 });
+          // J J J 2 -> five of a kind
+          strength.set(card, {card, rank: 7});
         } else {
           // J J J 1 1 -> four of a kind
-          strength.set(card, { card, rank: 6 });
+          strength.set(card, {card, rank: 6});
         }
         break;
       case 2:
         if (countMap.size === 2) {
-          // J J 3
-          // can turn into five of a kind
-          strength.set(card, { card, rank: 7 });
+          // J J 3 -> turn into five of a kind
+          strength.set(card, {card, rank: 7});
         } else if (countMap.size === 3) {
-          // J J 2 1
-          // turn one into four of a kind
-          strength.set(card, { card, rank: 6 });
+          // J J 2  -> turn one into four of a kind
+          strength.set(card, {card, rank: 6});
         } else {
-          // J J 1 1 1
-          // three of a kind
-          strength.set(card, { card, rank: 4 });
+          // J J 1 1 1 -> three of a kind
+          strength.set(card, {card, rank: 4});
         }
         break;
       case 1:
-        if (countMap.size === 2) {
-          // J 4
-          strength.set(card, { card, rank: 7 });
-        } else if (countMap.size === 3) {
-          // J 3 1
-          // J 2 2
-          if (mapValues.includes(2)) {
-            // 2 2 J => full house
-            strength.set(card, { card, rank: 5 });
-          } else {
-            // 1 3 J => four of a kind
-            strength.set(card, { card, rank: 6 });
-          }
-        } else if (countMap.size === 4) {
-          // 2 1 1 J -> three of a kind
-          strength.set(card, { card, rank: 4 });
-        } else {
-          // one pair
-          strength.set(card, { card, rank: 2 });
+        switch (countMap.size) {
+          case 2:
+            // J 4
+            strength.set(card, {card, rank: 7});
+            break;
+          case 3:
+            if (mapValues.includes(2)) {
+              // 2 2 J => full house
+              strength.set(card, {card, rank: 5});
+            } else {
+              // 1 3 J => four of a kind
+              strength.set(card, {card, rank: 6});
+            }
+            break;
+          case 4:
+            // 2 1 1 J -> three of a kind
+            strength.set(card, {card, rank: 4});
+            break;
+          case 5:
+            // one pair
+            strength.set(card, {card, rank: 2});
         }
     }
   });
