@@ -93,7 +93,7 @@ lineReader.on('close', function () {
   }
   galaxies.forEach((galaxy) => {
     dfs(galaxy);
-  })
+  });
   let sum = 0;
   for (let i = 0; i < paths.length; i++) {
     for (let j = i + 1; j < paths[0].length; j++) {
