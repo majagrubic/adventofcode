@@ -32,9 +32,9 @@ lineReader.on('close', function () {
       slots.set(slotNr, []);
     }
     const lenses = slots.get(slotNr);
+    const indexOfLens = lenses.map((lens) => lens.label).indexOf(label);
     if (part.includes('=')) {
       const value = parseInt(part.split('=')[1]);
-      const indexOfLens = lenses.map((lens) => lens.label).indexOf(label);
       if (indexOfLens === -1) {
         lenses.push({
           label,
@@ -43,11 +43,8 @@ lineReader.on('close', function () {
       } else {
         lenses[indexOfLens].value = value;
       }
-    } else {
-      const indexOfLens = lenses.map((lens) => lens.label).indexOf(label);
-      if (indexOfLens !== -1) {
-        lenses.splice(indexOfLens, 1);
-      }
+    } else if (indexOfLens !== -1) {
+      lenses.splice(indexOfLens, 1);
     }
   });
 
