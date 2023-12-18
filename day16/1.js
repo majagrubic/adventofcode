@@ -88,13 +88,6 @@ function dfs(visited, row, col, direction) {
   }
 }
 
-function printData(data) {
-  for (let row = 0; row < data.length; row++) {
-    console.log(data[row].join(''));
-  }
-  console.log('');
-}
-
 lineReader.on('line', function (line) {
   const lineArr = line.split('');
   data.push(lineArr);
