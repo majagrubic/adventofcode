@@ -1,3 +1,4 @@
 input.txt
 .idea/vcs.xml
-.idea/*
+.idea/*i
+.DS_Store
